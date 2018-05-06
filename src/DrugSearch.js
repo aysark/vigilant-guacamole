@@ -18,7 +18,19 @@ class DrugSearch extends React.Component {
   handleUpdateInput(value){
     this.setState({
       dataSource: [
-        'Lisinopril','Exemestane','Lithane','Lisdexmfetamine','Dimesylate'
+        'Lisinopril','Exemestane','Lithane','Lisdexmfetamine','Dimesylate',
+        "Lexxel", "Librium","Lidex","Lidoderm",
+    "Linezolid",
+    "Lipofen",
+    "Liposyn II",
+    "Liraglutide",
+    "Lisinopril and Hydrochlorothiazide",
+    "Locoid",
+    "Lodine",
+    "Loperamide Hcl",
+    "Lopid",
+    "Loprox Gel",
+    "Loracarbef",
       ],
     });
   }

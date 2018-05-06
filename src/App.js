@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import logo from './medjoyn_white.png';
+import BottomNavigation from './bottomNav';
 
 import {List, ListItem} from 'material-ui/List';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
@@ -93,11 +94,30 @@ class App extends Component {
       Cmp = () => (
         <List>
               <ListItem
-                primaryText={this.state.patient.firstname}
-                leftIcon={<ActionGrade color={pinkA200} />}
-                rightAvatar={<Avatar icon={<Person />} />}
+                primaryText={this.state.patient.firstname + ' ' + this.state.patient.lastname}
+                rightAvatar={<Avatar src="images/p1.png" />}
                 onClick={this.handlePatientListItem} 
               />
+              <ListItem
+               primaryText= "Mary James"
+               rightAvatar={<Avatar src="images/p2.png" />}
+               onClick={this.handlePatientListItem}
+             />
+             <ListItem
+               primaryText= "Sam Smith"
+               rightAvatar={<Avatar src="images/p3.png" />}
+               onClick={this.handlePatientListItem}
+             />
+             <ListItem
+               primaryText= "Zig Ziggler"
+               rightAvatar={<Avatar icon={<Person />} />}
+               onClick={this.handlePatientListItem}
+             />
+             <ListItem
+               primaryText="Lisa Qu"
+               rightAvatar={<Avatar icon={<Person />} />}
+               onClick={this.handlePatientListItem}
+             />
             </List>
         );
     } else if (this.state.patientInfoPage) {
@@ -137,15 +157,15 @@ class App extends Component {
         "hi"
       )
     }
-    // TODO: bottom navigation
 
     return (
       <MuiThemeProvider>
         <div id="appContainer" className="App">
           <AppBar title={<img src={logo} alt="logo" style={logoStyle} />} iconClassNameRight="muidocs-icon-navigation-expand-more" />
-
-          {<Cmp />}
           
+          <div id="appContent">
+            {<Cmp />}
+          </div>
         </div>
       </MuiThemeProvider>
     );
