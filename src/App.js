@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
+import logo from './medjoyn_white.png';
 
 import {List, ListItem} from 'material-ui/List';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
@@ -17,7 +18,6 @@ import Paper from 'material-ui/Paper';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 
-import logo from './logo.svg';
 import './App.css';
 
 import PatientClient from './PatientClient';
@@ -26,6 +26,11 @@ const headerStyle = {
     display: 'block',
     textAlign: 'left'
 };
+
+const logoStyle = {
+  width: '150px',
+  marginTop: '20px'
+}
 
 class App extends Component {
 
@@ -137,7 +142,7 @@ class App extends Component {
     return (
       <MuiThemeProvider>
         <div id="appContainer" className="App">
-          <AppBar title="MEDJOY" iconClassNameRight="muidocs-icon-navigation-expand-more" />
+          <AppBar title={<img src={logo} alt="logo" style={logoStyle} />} iconClassNameRight="muidocs-icon-navigation-expand-more" />
 
           {<Cmp />}
           
