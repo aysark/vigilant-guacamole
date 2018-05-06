@@ -131,6 +131,7 @@ class App extends Component {
         "hi"
       )
     }
+    // TODO: bottom navigation
 
     return (
       <MuiThemeProvider>
