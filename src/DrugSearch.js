@@ -1,21 +1,31 @@
-import React, {Component} from 'react';
+import React from 'react';
 import AutoComplete from 'material-ui/AutoComplete';
 
 /**
  * The input is used to create the `dataSource`, so the input always matches three entries.
  */
-export default class DrugSearch extends Component {
-  state = {
-    dataSource: [],
-  };
+class DrugSearch extends React.Component {
 
-  handleUpdateInput = (value) => {
+  constructor(props) {
+    super(props);
+    this.state = {
+      dataSource: [],
+    };
+    this.handleUpdateInput = this.handleUpdateInput.bind(this);
+    this.handleOnNewRequest = this.handleOnNewRequest.bind(this);
+  }
+
+  handleUpdateInput(value){
     this.setState({
       dataSource: [
         'Lisinopril','Exemestane','Lithane','Lisdexmfetamine','Dimesylate'
       ],
     });
-  };
+  }
+
+  handleOnNewRequest(){
+    this.props.metaOnNewRequest();
+  }
 
   render() {
     return (
@@ -24,6 +34,7 @@ export default class DrugSearch extends Component {
           hintText="Type anything"
           dataSource={this.state.dataSource}
           onUpdateInput={this.handleUpdateInput}
+          onNewRequest={this.handleOnNewRequest}
           floatingLabelText="Search Rx"
           fullWidth={true}
         />
@@ -31,3 +42,4 @@ export default class DrugSearch extends Component {
     );
   }
 }
+export default DrugSearch;

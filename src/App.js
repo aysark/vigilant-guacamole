@@ -1,12 +1,5 @@
 import React, { Component } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
-
 import AppBar from 'material-ui/AppBar';
 
 import {List, ListItem} from 'material-ui/List';
@@ -16,7 +9,8 @@ import Avatar from 'material-ui/Avatar';
 import {pinkA200, transparent} from 'material-ui/styles/colors';
 import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 
-import AutoComplete from 'material-ui/AutoComplete';
+import DrugSearch from './DrugSearch';
+import PrescriptionList from './PrescriptionList';
 
 import Paper from 'material-ui/Paper';
 import Menu from 'material-ui/Menu';
@@ -44,13 +38,14 @@ class App extends Component {
       prescriptionPage: false,
       patientMeds:[],
       dataSource: [],
+      prescriptionPageRender: null,
     }
 
     this.renderPatientListItem = this.renderPatientListItem.bind(this);
     this.handlePatientListItem = this.handlePatientListItem.bind(this);
 
     this.renderPatientMeds = this.renderPatientMeds.bind(this);
-    this.handleUpdateInput = this.handleUpdateInput.bind(this);
+    this.metaOnNewRequest = this.metaOnNewRequest.bind(this);
   }
 
   renderPatientListItem(id) {
@@ -73,9 +68,9 @@ class App extends Component {
     });
   }
 
-  handleUpdateInput(value) {
+  metaOnNewRequest() {
     this.setState({
-      dataSource: ['Lisinopril','Exemestane','Lithane','Lisdexmfetamine','Dimesylate'],
+      prescriptionPage: true
     });
   }
 
@@ -102,13 +97,13 @@ class App extends Component {
     } else if (this.state.patientInfoPage) {
       Cmp = () => (
         <div>
-          <AutoComplete
-            hintText="Type anything"
-            dataSource={this.state.dataSource}
-            onUpdateInput={this.handleUpdateInput}
-            floatingLabelText="Search Rx"
-            fullWidth={true}
-          />
+          {<DrugSearch metaOnNewRequest={this.metaOnNewRequest} />}
+
+          {this.state.prescriptionPage ?
+            <PrescriptionList />            
+            : ""
+          }
+
 
           <h2 style={headerStyle}>Current Rx</h2>
           <Paper >
@@ -132,6 +127,9 @@ class App extends Component {
         </div>
       )
     } else if (this.state.patientInfoPage) {
+      Cmp = () => (
+        "hi"
+      )
     }
 
     return (

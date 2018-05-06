@@ -1,4 +1,4 @@
-const token = 'g7upqkdf7ex62asv7j8v88vk';
+const token = 'azu7fvymbak6z5anncxyftck';
 
 function getPatient(id, cb) {
   return fetch(`https://api.athenahealth.com/preview1/1959540/patients/${id}`, {
