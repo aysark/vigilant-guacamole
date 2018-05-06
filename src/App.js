@@ -6,6 +6,7 @@ import {List, ListItem} from 'material-ui/List';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
 import Divider from 'material-ui/Divider';
 import Avatar from 'material-ui/Avatar';
+import Person from 'material-ui/svg-icons/social/person';
 import {pinkA200, transparent} from 'material-ui/styles/colors';
 import ArrowDropRight from 'material-ui/svg-icons/navigation-arrow-drop-right';
 
@@ -89,7 +90,7 @@ class App extends Component {
               <ListItem
                 primaryText={this.state.patient.firstname}
                 leftIcon={<ActionGrade color={pinkA200} />}
-                rightAvatar={<Avatar src="images/chexee-128.jpg" />}
+                rightAvatar={<Avatar icon={<Person />} />}
                 onClick={this.handlePatientListItem} 
               />
             </List>

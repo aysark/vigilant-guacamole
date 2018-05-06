@@ -12,11 +12,20 @@ import EditorInsertChart from 'material-ui/svg-icons/editor/insert-chart';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
+import Snackbar from 'material-ui/Snackbar';
+import Slider from 'material-ui/Slider';
+
 
 export default class PrescriptionList extends React.Component {
   state = {
     open: false,
     open2: false,
+    snackBarOpen: false,
+    firstSlider: 10,
+  };
+
+  handleFirstSlider = (event, value) => {
+    this.setState({firstSlider: value});
   };
 
   handleOpen = () => {
@@ -36,7 +45,12 @@ export default class PrescriptionList extends React.Component {
   handleClose = () => {
     this.setState({
       open: false,
+    });
+  };
+  handleClose2 = () => {
+    this.setState({
       open2: false,
+      snackBarOpen: true
     });
   };
 
@@ -60,12 +74,14 @@ export default class PrescriptionList extends React.Component {
         label="Submit"
         primary={true}
         keyboardFocused={true}
-        onClick={this.handleClose}
+        onClick={this.handleClose2}
       />,
     ];
 
     return (
       <div>
+        {this.state.firstSlider + 'mg'}
+        <Slider min={1} max={100} step={5} defaultValue={5} style={{width: 200}} value={this.state.firstSlider} onChange={this.handleFirstSlider} />
         <List>
           <Subheader inset={false}>Results Rx</Subheader>
           <ListItem
@@ -117,6 +133,11 @@ export default class PrescriptionList extends React.Component {
             >
               Prescribe this medication.
           </Dialog>
+        <Snackbar
+          open={this.state.snackBarOpen}
+          message="Processing e-Prescription"
+          autoHideDuration={4000}
+        />
       </div>
     );
   }
